@@ -1,0 +1,23 @@
+group = 'org.thymeleaf.extras'
+version = '1.0.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'maven'
+
+sourceCompatibility = '1.7'
+targetCompatibility = '1.7'
+
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+repositories { 
+	mavenLocal()
+	mavenCentral()
+}
+
+dependencies {
+	compile "org.thymeleaf:thymeleaf:2.0.17"
+	compile "org.togglz:togglz-core:2.0.0.RC1"
+	testCompile "junit:junit:4.8.2"
+	testCompile "org.togglz:togglz-testing:2.0.0.RC1"
+	testCompile "org.thymeleaf:thymeleaf-testing:2.0.3"
+}
