@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
   <body>
-    <span togglz:active="'FEATURE_2'">
+    <span togglz:active="FEATURE_2">
       FEATURE_2 is active
     </span>
   </body>
