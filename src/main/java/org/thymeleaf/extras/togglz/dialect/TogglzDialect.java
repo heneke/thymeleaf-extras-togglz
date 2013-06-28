@@ -50,7 +50,7 @@ public class TogglzDialect extends AbstractDialect implements IExpressionEnhanci
 
 	@Override
 	public Set<IProcessor> getProcessors() {
-		final Set<IProcessor> processors = new LinkedHashSet<>();
+		final Set<IProcessor> processors = new LinkedHashSet<IProcessor>();
 		processors.add(new FeatureActiveAttrProcessor());
 		return processors;
 	}
