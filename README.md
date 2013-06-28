@@ -12,7 +12,7 @@ Requirements
 Usage
 -----
 
-Add an instance of org.thymeleaf.extras.togglz.dialect.TogglzDialect to your Thymeleaf template engine. In your templates, you may not use
+Add an instance of org.thymeleaf.extras.togglz.dialect.TogglzDialect to your Thymeleaf template engine. In your templates, you may now use
 
 ```html
 <div togglz:active="YOUR_FEATURE_NAME">
