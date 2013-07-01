@@ -1,8 +1,25 @@
+buildscript {
+	repositories {
+		mavenLocal()
+		maven {
+			credentials {
+				username = "${artifactoryUsername}"
+				password = "${artifactoryPassword}"
+			}
+			url "${artifactoryRepoUrl}"
+		}
+	}
+	dependencies {
+		classpath(group: 'org.jfrog.buildinfo', name: 'build-info-extractor-gradle', version: '2.0.17')
+	}
+}
+
 group = 'org.thymeleaf.extras'
 version = '1.0.0-SNAPSHOT'
 
 apply plugin: 'java'
 apply plugin: 'maven'
+apply plugin: 'artifactory'
 
 sourceCompatibility = '1.6'
 targetCompatibility = '1.6'
@@ -25,3 +42,20 @@ dependencies {
 	testCompile "org.togglz:togglz-testing:2.0.0.Final"
 	testCompile "org.thymeleaf:thymeleaf-testing:2.0.3"
 }
+
+artifactory {
+	publish {
+		contextUrl = "${artifactoryUrl}"
+		repository {
+			if(project.version.endsWith('-SNAPSHOT')) {
+				repoKey = 'pixw-snapshot-local'
+			}
+			else {
+				repoKey = 'pixw-release-local'
+			}
+			username = "${artifactoryUsername}"
+			password = "${artifactoryPassword}"
+		}
+	}
+}
+artifactoryPublish.dependsOn 'test'
