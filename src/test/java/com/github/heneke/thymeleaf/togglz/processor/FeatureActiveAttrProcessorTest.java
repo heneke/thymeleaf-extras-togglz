@@ -35,7 +35,7 @@ public class FeatureActiveAttrProcessorTest extends AbstractTogglzTest {
 		assertThat(isFeatureActive(FEATURE_1), is(true));
 
 		final TestExecutor executor = executor();
-		executor.execute("classpath:com/github/heneke/thymeleaf/togglz/processor/active.thtest");
+		executor.execute(getTestFile("active.thtest"));
 		assertThat(executor.isAllOK(), is(true));
 	}
 
@@ -44,8 +44,25 @@ public class FeatureActiveAttrProcessorTest extends AbstractTogglzTest {
 		assertThat(isFeatureActive(FEATURE_2), is(false));
 
 		final TestExecutor executor = executor();
-		executor.execute("classpath:com/github/heneke/thymeleaf/togglz/processor/inactive.thtest");
+		executor.execute(getTestFile("inactive.thtest"));
 		assertThat(executor.isAllOK(), is(true));
 	}
 
+	@Test
+	public void expr_active() {
+		assertThat(isFeatureActive(FEATURE_1), is(true));
+
+		final TestExecutor executor = executor();
+		executor.execute(getTestFile("expr_active.thtest"));
+		assertThat(executor.isAllOK(), is(true));
+	}
+
+	@Test
+	public void expr_inactive() {
+		assertThat(isFeatureActive(FEATURE_1), is(true));
+
+		final TestExecutor executor = executor();
+		executor.execute(getTestFile("expr_inactive.thtest"));
+		assertThat(executor.isAllOK(), is(true));
+	}
 }

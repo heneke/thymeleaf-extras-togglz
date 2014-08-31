@@ -22,6 +22,7 @@ package com.github.heneke.thymeleaf.togglz.processor;
 import org.thymeleaf.Arguments;
 import org.thymeleaf.dom.Element;
 import org.thymeleaf.processor.attr.AbstractConditionalVisibilityAttrProcessor;
+import org.thymeleaf.standard.expression.StandardExpressionProcessor;
 import org.thymeleaf.standard.processor.attr.StandardIfAttrProcessor;
 import org.togglz.core.manager.FeatureManager;
 import org.togglz.core.manager.LazyResolvingFeatureManager;
@@ -41,11 +42,17 @@ public class FeatureActiveAttrProcessor extends AbstractConditionalVisibilityAtt
 
 	@Override
 	protected boolean isVisible(Arguments arguments, Element element, String attributeName) {
-		String attributeValue = element.getAttributeValue(attributeName);
+		final String attributeValue = element.getAttributeValue(attributeName);
 		if (attributeValue == null || attributeValue.trim().length() == 0) {
 			return false;
 		}
-		return isFeatureActive(attributeValue.trim());
+		final Object value = StandardExpressionProcessor.processExpression(arguments, attributeValue);
+		if (value != null) {
+			return isFeatureActive(value.toString());
+		}
+		else {
+			return false;
+		}
 	}
 
 	@Override

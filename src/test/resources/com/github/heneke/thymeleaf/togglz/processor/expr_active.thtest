@@ -1,0 +1,26 @@
+%TEMPLATE_MODE HTML5
+# ------------ separator comment -----------
+%CONTEXT
+feature = 'FEATURE_1'
+# ------------------------------------------
+%MESSAGES
+# ------------------------------------------
+%INPUT
+<!DOCTYPE html>
+<html>
+  <body>
+    <span togglz:active="${feature}">
+      FEATURE_1 is active
+    </span>
+  </body>
+</html>
+# ------------------------------------------
+%OUTPUT 
+<!DOCTYPE html>
+<html>
+  <body>
+    <span>
+      FEATURE_1 is active
+    </span>
+  </body>
+</html>

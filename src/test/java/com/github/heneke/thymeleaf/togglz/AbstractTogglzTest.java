@@ -54,4 +54,8 @@ public class AbstractTogglzTest {
 		return executor;
 	}
 
+	protected String getTestFile(String file) {
+		return String.format("classpath:%1$s/%2$s", getClass().getPackage().getName().replace(".", "/"), file);
+	}
+
 }
