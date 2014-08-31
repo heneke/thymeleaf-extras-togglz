@@ -14,7 +14,7 @@ buildscript {
 	}
 }
 
-group = 'org.thymeleaf.extras'
+group = 'com.github.heneke.thymeleaf'
 version = '1.0.0-SNAPSHOT'
 
 apply plugin: 'java'
