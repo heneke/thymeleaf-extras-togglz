@@ -36,7 +36,7 @@ repositories {
 }
 
 dependencies {
-	compile "org.thymeleaf:thymeleaf:2.0.17"
+	compile "org.thymeleaf:thymeleaf:2.0.21"
 	compile "org.togglz:togglz-core:2.0.1.Final"
 	testCompile "junit:junit:4.8.2"
 	testCompile "org.togglz:togglz-testing:2.0.1.Final"
