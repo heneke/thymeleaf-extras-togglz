@@ -59,3 +59,35 @@ artifactory {
 	}
 }
 artifactoryPublish.dependsOn 'test'
+
+configure(install.repositories.mavenInstaller) {
+	pom.project {
+		packaging 'jar'
+		name 'Thymeleaf Extras Togglz'
+		description 'Thymeleaf dialect integrating Togglz feature toggles.'
+		inceptionYear '2013'
+		url 'https://github.com/heneke/thymeleaf-extras-togglz'
+		scm {
+			connection 'https://github.com/heneke/thymeleaf-extras-togglz.git'
+			developerConnection 'https://github.com/heneke/thymeleaf-extras-togglz.git'
+			url 'https://github.com/heneke/thymeleaf-extras-togglz/tree/master'
+		}
+		licenses {
+			license {
+				name 'The Apache License, Version 2.0'
+				url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+			}
+		}
+		developers {
+			developer {
+				id 'heneke'
+				name 'Hendrik Heneke'
+				email 'heneke@gmail.com'
+			}
+		}
+		issueManagement {
+			url 'https://github.com/heneke/thymeleaf-extras-togglz/issues'
+			system 'Github Issues'
+		}
+	}
+}
