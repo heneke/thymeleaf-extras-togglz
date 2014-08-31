@@ -17,11 +17,10 @@
  *
  * =============================================================================
  */
-package org.thymeleaf.extras.togglz;
+package com.github.heneke.thymeleaf.togglz;
 
 import java.util.Arrays;
 
-import org.thymeleaf.extras.togglz.dialect.TogglzDialect;
 import org.thymeleaf.standard.StandardDialect;
 import org.thymeleaf.testing.templateengine.engine.TestExecutor;
 import org.thymeleaf.testing.templateengine.report.ConsoleTestReporter;
@@ -30,7 +29,9 @@ import org.togglz.core.context.FeatureContext;
 import org.togglz.testing.TestFeatureManager;
 import org.togglz.testing.TestFeatureManagerProvider;
 
-import static org.thymeleaf.extras.togglz.ThymeleafFeature.*;
+import com.github.heneke.thymeleaf.togglz.TogglzDialect;
+
+import static com.github.heneke.thymeleaf.togglz.ThymeleafFeature.*;
 
 public class AbstractTogglzTest {
 

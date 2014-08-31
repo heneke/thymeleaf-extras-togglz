@@ -17,7 +17,7 @@
  *
  * =============================================================================
  */
-package org.thymeleaf.extras.togglz.dialect;
+package com.github.heneke.thymeleaf.togglz;
 
 import java.util.Collections;
 import java.util.LinkedHashSet;
@@ -27,8 +27,9 @@ import java.util.Set;
 import org.thymeleaf.context.IProcessingContext;
 import org.thymeleaf.dialect.AbstractDialect;
 import org.thymeleaf.dialect.IExpressionEnhancingDialect;
-import org.thymeleaf.extras.togglz.dialect.processor.FeatureActiveAttrProcessor;
 import org.thymeleaf.processor.IProcessor;
+
+import com.github.heneke.thymeleaf.togglz.processor.FeatureActiveAttrProcessor;
 
 public class TogglzDialect extends AbstractDialect implements IExpressionEnhancingDialect {
 

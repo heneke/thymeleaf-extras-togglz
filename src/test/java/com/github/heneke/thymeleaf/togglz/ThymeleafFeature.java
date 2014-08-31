@@ -17,7 +17,7 @@
  *
  * =============================================================================
  */
-package org.thymeleaf.extras.togglz;
+package com.github.heneke.thymeleaf.togglz;
 
 import org.togglz.core.Feature;
 

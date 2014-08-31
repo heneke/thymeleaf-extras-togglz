@@ -17,7 +17,7 @@
  *
  * =============================================================================
  */
-package org.thymeleaf.extras.togglz.dialect.processor;
+package com.github.heneke.thymeleaf.togglz.processor;
 
 import org.thymeleaf.Arguments;
 import org.thymeleaf.dom.Element;

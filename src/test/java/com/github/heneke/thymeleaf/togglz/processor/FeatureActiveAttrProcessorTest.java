@@ -17,16 +17,16 @@
  *
  * =============================================================================
  */
-package org.thymeleaf.extras.togglz.dialect.processor;
+package com.github.heneke.thymeleaf.togglz.processor;
 
 import org.junit.Test;
-import org.thymeleaf.extras.togglz.AbstractTogglzTest;
 import org.thymeleaf.testing.templateengine.engine.TestExecutor;
 
+import com.github.heneke.thymeleaf.togglz.AbstractTogglzTest;
+
+import static com.github.heneke.thymeleaf.togglz.ThymeleafFeature.*;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
-
-import static org.thymeleaf.extras.togglz.ThymeleafFeature.*;
 
 public class FeatureActiveAttrProcessorTest extends AbstractTogglzTest {
 
@@ -35,7 +35,7 @@ public class FeatureActiveAttrProcessorTest extends AbstractTogglzTest {
 		assertThat(isFeatureActive(FEATURE_1), is(true));
 
 		final TestExecutor executor = executor();
-		executor.execute("classpath:org/thymeleaf/extras/togglz/dialect/processor/active.thtest");
+		executor.execute("classpath:com/github/heneke/thymeleaf/togglz/processor/active.thtest");
 		assertThat(executor.isAllOK(), is(true));
 	}
 
@@ -44,7 +44,7 @@ public class FeatureActiveAttrProcessorTest extends AbstractTogglzTest {
 		assertThat(isFeatureActive(FEATURE_2), is(false));
 
 		final TestExecutor executor = executor();
-		executor.execute("classpath:org/thymeleaf/extras/togglz/dialect/processor/inactive.thtest");
+		executor.execute("classpath:com/github/heneke/thymeleaf/togglz/processor/inactive.thtest");
 		assertThat(executor.isAllOK(), is(true));
 	}
 
