@@ -59,7 +59,9 @@ artifactory {
 		}
 	}
 }
-artifactoryPublish.dependsOn 'test'
+[install, uploadArchives, artifactoryPublish].each {
+	it.dependsOn 'test'
+}
 
 uploadArchives {
 	repositories {
