@@ -36,12 +36,18 @@ repositories {
 	mavenCentral()
 }
 
+project.ext {
+	appName = "Thymeleaf Extras Togglz ${project.version}"
+	thymeleafVersion = "2.1.3.RELEASE"
+	togglzVersion = "2.0.1.Final"
+}
+
 dependencies {
-	compile "org.thymeleaf:thymeleaf:2.1.3.RELEASE"
-	compile "org.togglz:togglz-core:2.0.1.Final"
+	compile "org.thymeleaf:thymeleaf:${thymeleafVersion}"
+	compile "org.togglz:togglz-core:${togglzVersion}"
 	testCompile "junit:junit:4.8.2"
-	testCompile "org.togglz:togglz-testing:2.0.1.Final"
-	testCompile "org.thymeleaf:thymeleaf-testing:2.1.3.RELEASE"
+	testCompile "org.togglz:togglz-testing:${togglzVersion}"
+	testCompile "org.thymeleaf:thymeleaf-testing:${thymeleafVersion}"
 }
 
 artifactory {
@@ -128,4 +134,13 @@ task sourcesJar(type: Jar, dependsOn: classes) {
 artifacts {
 	archives javadocJar
 	archives sourcesJar
+}
+
+javadoc {
+	options {
+		docTitle = appName
+		windowTitle = appName
+		charSet = "ISO-8859-1"
+		links("http://www.thymeleaf.org/apidocs/thymeleaf/${thymeleafVersion}")
+	}
 }

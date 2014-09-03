@@ -24,6 +24,7 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.IProcessingContext;
 import org.thymeleaf.dialect.AbstractDialect;
 import org.thymeleaf.dialect.IExpressionEnhancingDialect;
@@ -31,6 +32,14 @@ import org.thymeleaf.processor.IProcessor;
 
 import com.github.heneke.thymeleaf.togglz.processor.FeatureActiveAttrProcessor;
 
+/**
+ * Dialect for Thymeleaf that allows to show/hide DOM containers based on features state. In Order to use it, add an
+ * instance of the dialect to your via {@link TemplateEngine}. The dialect uses the default prefix <code>togglz</code>.
+ * 
+ * @author Hendrik Heneke
+ * @since 1.0.0
+ * @see FeatureActiveAttrProcessor
+ */
 public class TogglzDialect extends AbstractDialect implements IExpressionEnhancingDialect {
 
 	public static final String DEFAULT_PREFIX = "togglz";

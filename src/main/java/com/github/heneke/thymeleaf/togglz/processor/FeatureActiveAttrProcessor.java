@@ -28,6 +28,34 @@ import org.togglz.core.manager.FeatureManager;
 import org.togglz.core.manager.LazyResolvingFeatureManager;
 import org.togglz.core.util.NamedFeature;
 
+import com.github.heneke.thymeleaf.togglz.TogglzDialect;
+
+/**
+ * Processor for the <code>active</code> attribute in {@link TogglzDialect}. It shows or hides the given DOM container
+ * based on feature state: <br/>
+ * <br/>
+ * 
+ * <pre>
+ * &lt;span togglz:active="FEATURE"&gt;
+ *    Only visible when FEATURE is active.
+ * &lt/span&gt;
+ * </pre>
+ * 
+ * Features may also be specified dynamically by using expressions:<br/>
+ * <br/>
+ * 
+ * <pre>
+ * &lt;span togglz:active="${feature}"&gt;
+ *    Only visible when feature resolved by evaluating ${feature} is active.
+ * &lt/span&gt;
+ * </pre>
+ * 
+ * When using Thymeleaf 2.0.x, literal feature names have to be quoted with single quotes. Thymeleaf from 2.1 onward
+ * supports unquoted string literals.
+ * 
+ * @author Hendrik Heneke
+ * @since 1.0.0
+ */
 public class FeatureActiveAttrProcessor extends AbstractConditionalVisibilityAttrProcessor {
 
 	public static final String ATTR_NAME = "active";
