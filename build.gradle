@@ -23,6 +23,8 @@ project.ext {
 	appName = "Thymeleaf Extras Togglz ${project.version}"
 	thymeleafVersion = "2.1.3.RELEASE"
 	togglzVersion = "2.0.1.Final"
+	ossrh = project.hasProperty('ossrhUsername') && project.hasProperty('ossrhPassword')
+	sign = project.hasProperty('signing.keyId') && project.hasProperty('signing.password') && project.hasProperty('signing.secretKeyRingFile')
 }
 
 dependencies {
@@ -33,25 +35,36 @@ dependencies {
 	testCompile "org.thymeleaf:thymeleaf-testing:${thymeleafVersion}"
 }
 
-[install, assemble, uploadArchives].each {
+def testBeforeRun = [install, assemble]
+if(ossrh) {
+	testBeforeRun << uploadArchives
+}
+testBeforeRun.each {
 	it.dependsOn 'test'
 }
 
-uploadArchives {
-	repositories {
-		mavenDeployer {
-			beforeDeployment { deployment -> signing.signPom(deployment) }
-			repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-				authentication(userName: ossrhUsername, password: ossrhPassword)
-			}
-			snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-				authentication(userName: ossrhUsername, password: ossrhPassword)
+if(ossrh) {
+	uploadArchives {
+		repositories {
+			mavenDeployer {
+				beforeDeployment { deployment -> signing.signPom(deployment) }
+				repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+					authentication(userName: ossrhUsername, password: ossrhPassword)
+				}
+				snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+					authentication(userName: ossrhUsername, password: ossrhPassword)
+				}
 			}
 		}
 	}
 }
 
-[install.repositories.mavenInstaller, uploadArchives.repositories.mavenDeployer].each {
+def pomTasks = [install.repositories.mavenInstaller]
+if(ossrh) {
+	pomTasks << uploadArchives.repositories.mavenDeployer
+}
+
+pomTasks.each {
 	configure(it) {
 		pom.project {
 			packaging 'jar'
@@ -85,8 +98,10 @@ uploadArchives {
 	}
 }
 
-configure(signing) {
-	sign configurations.archives
+if(sign) {
+	configure(signing) {
+		sign configurations.archives
+	}
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
