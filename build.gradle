@@ -33,7 +33,7 @@ dependencies {
 	testCompile "org.thymeleaf:thymeleaf-testing:${thymeleafVersion}"
 }
 
-[install, uploadArchives].each {
+[install, assemble, uploadArchives].each {
 	it.dependsOn 'test'
 }
 
