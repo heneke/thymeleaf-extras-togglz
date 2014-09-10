@@ -28,14 +28,14 @@ import static com.github.heneke.thymeleaf.togglz.ThymeleafFeature.*;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
-public class FeatureActiveAttrProcessorTest extends AbstractTogglzTest {
+public class FeatureInactiveAttrProcessorTest extends AbstractTogglzTest {
 
 	@Test
 	public void active() {
 		assertThat(isFeatureActive(FEATURE_1), is(true));
 
 		final TestExecutor executor = executor();
-		executor.execute(getTestFile("active_active.thtest"));
+		executor.execute(getTestFile("inactive_active.thtest"));
 		assertThat(executor.isAllOK(), is(true));
 	}
 
@@ -44,7 +44,7 @@ public class FeatureActiveAttrProcessorTest extends AbstractTogglzTest {
 		assertThat(isFeatureActive(FEATURE_1), is(true));
 
 		final TestExecutor executor = executor();
-		executor.execute(getTestFile("active_active_expr.thtest"));
+		executor.execute(getTestFile("inactive_active_expr.thtest"));
 		assertThat(executor.isAllOK(), is(true));
 	}
 
@@ -53,7 +53,7 @@ public class FeatureActiveAttrProcessorTest extends AbstractTogglzTest {
 		assertThat(isFeatureActive(FEATURE_2), is(false));
 
 		final TestExecutor executor = executor();
-		executor.execute(getTestFile("active_inactive.thtest"));
+		executor.execute(getTestFile("inactive_inactive.thtest"));
 		assertThat(executor.isAllOK(), is(true));
 	}
 
@@ -62,7 +62,7 @@ public class FeatureActiveAttrProcessorTest extends AbstractTogglzTest {
 		assertThat(isFeatureActive(FEATURE_1), is(true));
 
 		final TestExecutor executor = executor();
-		executor.execute(getTestFile("active_inactive_expr.thtest"));
+		executor.execute(getTestFile("inactive_inactive_expr.thtest"));
 		assertThat(executor.isAllOK(), is(true));
 	}
 }

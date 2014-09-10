@@ -31,6 +31,7 @@ import org.thymeleaf.dialect.IExpressionEnhancingDialect;
 import org.thymeleaf.processor.IProcessor;
 
 import com.github.heneke.thymeleaf.togglz.processor.FeatureActiveAttrProcessor;
+import com.github.heneke.thymeleaf.togglz.processor.FeatureInactiveAttrProcessor;
 
 /**
  * Dialect for Thymeleaf that allows to show/hide DOM containers based on features state. In Order to use it, add an
@@ -62,6 +63,7 @@ public class TogglzDialect extends AbstractDialect implements IExpressionEnhanci
 	public Set<IProcessor> getProcessors() {
 		final Set<IProcessor> processors = new LinkedHashSet<IProcessor>();
 		processors.add(new FeatureActiveAttrProcessor());
+		processors.add(new FeatureInactiveAttrProcessor());
 		return processors;
 	}
 

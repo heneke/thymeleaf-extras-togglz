@@ -26,13 +26,13 @@ import org.thymeleaf.standard.processor.attr.StandardIfAttrProcessor;
 import com.github.heneke.thymeleaf.togglz.TogglzDialect;
 
 /**
- * Processor for the <code>active</code> attribute in {@link TogglzDialect}. It shows or hides the given DOM container
+ * Processor for the <code>inactive</code> attribute in {@link TogglzDialect}. It shows or hides the given DOM container
  * based on feature state: <br/>
  * <br/>
  * 
  * <pre>
- * &lt;span togglz:active="FEATURE"&gt;
- *    Only visible when FEATURE is active.
+ * &lt;span togglz:inactive="FEATURE"&gt;
+ *    Only visible when FEATURE is inactive.
  * &lt/span&gt;
  * </pre>
  * 
@@ -40,8 +40,8 @@ import com.github.heneke.thymeleaf.togglz.TogglzDialect;
  * <br/>
  * 
  * <pre>
- * &lt;span togglz:active="${feature}"&gt;
- *    Only visible when feature resolved by evaluating ${feature} is active.
+ * &lt;span togglz:inactive="${feature}"&gt;
+ *    Only visible when feature resolved by evaluating ${feature} is inactive.
  * &lt/span&gt;
  * </pre>
  * 
@@ -49,20 +49,20 @@ import com.github.heneke.thymeleaf.togglz.TogglzDialect;
  * supports unquoted string literals.
  * 
  * @author Hendrik Heneke
- * @since 1.0.0
+ * @since 1.0.1
  */
-public class FeatureActiveAttrProcessor extends AbstractFeatureAttrProcessor {
+public class FeatureInactiveAttrProcessor extends AbstractFeatureAttrProcessor {
 
-	public static final String ATTR_NAME = "active";
+	public static final String ATTR_NAME = "inactive";
 	public static final int ATTR_PRECEDENCE = StandardIfAttrProcessor.ATTR_PRECEDENCE;
 
-	public FeatureActiveAttrProcessor() {
+	public FeatureInactiveAttrProcessor() {
 		super(ATTR_NAME);
 	}
 
 	@Override
 	protected boolean isVisible(Arguments arguments, Element element, String attributeName) {
-		return determineFeatureState(arguments, element, attributeName, false);
+		return !determineFeatureState(arguments, element, attributeName, true);
 	}
 
 	@Override
