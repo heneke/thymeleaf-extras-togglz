@@ -1,7 +1,6 @@
 %TEMPLATE_MODE HTML5
 # ------------ separator comment -----------
 %CONTEXT
-feature = 'FEATURE_1'
 # ------------------------------------------
 %MESSAGES
 # ------------------------------------------
@@ -10,7 +9,7 @@ feature = 'FEATURE_1'
 <html>
   <body>
     <span togglz:active="FEATURE_2">
-      FEATURE_2 is active
+      invisible (FEATURE_2 is inactive)
     </span>
   </body>
 </html>

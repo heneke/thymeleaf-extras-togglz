@@ -9,8 +9,8 @@ feature = 'FEATURE_1'
 <!DOCTYPE html>
 <html>
   <body>
-    <span togglz:active="${feature}">
-      FEATURE_1 is active
+    <span togglz:inactive="FEATURE_2">
+      visible (FEATURE_2 is inactive)
     </span>
   </body>
 </html>
@@ -20,7 +20,7 @@ feature = 'FEATURE_1'
 <html>
   <body>
     <span>
-      FEATURE_1 is active
+      visible (FEATURE_2 is inactive)
     </span>
   </body>
 </html>

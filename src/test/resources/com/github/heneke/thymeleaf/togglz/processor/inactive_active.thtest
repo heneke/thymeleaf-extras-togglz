@@ -8,8 +8,8 @@
 <!DOCTYPE html>
 <html>
   <body>
-    <span togglz:active="FEATURE_1">
-      FEATURE_1 is active
+    <span togglz:inactive="FEATURE_1">
+      invisible (FEATURE_1 is active)
     </span>
   </body>
 </html>
@@ -18,8 +18,5 @@
 <!DOCTYPE html>
 <html>
   <body>
-    <span>
-      FEATURE_1 is active
-    </span>
   </body>
 </html>
