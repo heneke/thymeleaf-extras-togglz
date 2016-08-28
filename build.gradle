@@ -1,5 +1,5 @@
 group = 'com.github.heneke.thymeleaf'
-version = '1.1.0.RELEASE'
+version = '1.1.1-SNAPSHOT'
 
 apply plugin: 'java'
 apply plugin: 'maven'
