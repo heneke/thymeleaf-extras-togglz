@@ -1,4 +1,5 @@
 .classpath
+.idea
 .gradle
 .project
 .settings
