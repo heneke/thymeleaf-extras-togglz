@@ -19,56 +19,51 @@
  */
 package com.github.heneke.thymeleaf.togglz.processor;
 
-import org.thymeleaf.Arguments;
-import org.thymeleaf.dom.Element;
-import org.thymeleaf.processor.attr.AbstractConditionalVisibilityAttrProcessor;
-import org.thymeleaf.standard.expression.StandardExpressionProcessor;
+import org.thymeleaf.context.ITemplateContext;
+import org.thymeleaf.engine.AttributeName;
+import org.thymeleaf.model.IProcessableElementTag;
+import org.thymeleaf.standard.expression.IStandardExpression;
+import org.thymeleaf.standard.expression.IStandardExpressionParser;
+import org.thymeleaf.standard.expression.StandardExpressions;
+import org.thymeleaf.standard.processor.AbstractStandardConditionalVisibilityTagProcessor;
+import org.thymeleaf.templatemode.TemplateMode;
 import org.togglz.core.manager.FeatureManager;
 import org.togglz.core.manager.LazyResolvingFeatureManager;
 import org.togglz.core.util.NamedFeature;
 
-@SuppressWarnings("deprecation")
-public abstract class AbstractFeatureAttrProcessor extends AbstractConditionalVisibilityAttrProcessor {
+public abstract class AbstractFeatureAttrProcessor extends AbstractStandardConditionalVisibilityTagProcessor {
 
-	private final FeatureManager featureManager;
+    private final FeatureManager featureManager;
 
-	protected AbstractFeatureAttrProcessor(final String attributeName) {
-		super(attributeName);
-		this.featureManager = new LazyResolvingFeatureManager();
-	}
+    protected AbstractFeatureAttrProcessor(final TemplateMode templateMode, final String dialectPrefix, final String attributeName, final int precedence) {
+        super(templateMode, dialectPrefix, attributeName, precedence);
+        this.featureManager = new LazyResolvingFeatureManager();
+    }
 
-	/**
-	 * Determines the feature state.
-	 * 
-	 * @param arguments
-	 * @param element
-	 * @param attributeName
-	 * @param defaultState
-	 *            default state to return if the attribute value is <code>NULL</code> or empty
-	 * @return the feature state
-	 */
-	protected boolean determineFeatureState(Arguments arguments, Element element, String attributeName,
-			boolean defaultState) {
-		final String attributeValue = element.getAttributeValue(attributeName);
-		if (attributeValue == null || attributeValue.trim().length() == 0) {
-			return defaultState;
-		}
+    /**
+     * Determines the feature state
+     *
+     * @param context        the template context
+     * @param tag            the tag
+     * @param attributeName  the attribute name
+     * @param attributeValue the attribute value
+     * @param defaultState   the default state if the expression evaluates to null
+     * @return the feature state
+     */
+    protected boolean determineFeatureState(final ITemplateContext context, final IProcessableElementTag tag, final AttributeName attributeName, final String attributeValue, boolean defaultState) {
+        final IStandardExpressionParser expressionParser = StandardExpressions.getExpressionParser(context.getConfiguration());
+        final IStandardExpression expression = expressionParser.parseExpression(context, attributeValue);
+        final Object value = expression.execute(context);
+        if (value != null) {
+            return isFeatureActive(value.toString());
+        }
+        else {
+            return defaultState;
+        }
+    }
 
-		final Object value = processExpression(arguments, attributeValue);
-		if (value != null) {
-			return isFeatureActive(value.toString());
-		}
-		else {
-			return defaultState;
-		}
-	}
-
-	private boolean isFeatureActive(String name) {
-		return featureManager.isActive(new NamedFeature(name));
-	}
-
-	private Object processExpression(Arguments arguments, String attributeValue) {
-		return StandardExpressionProcessor.processExpression(arguments, attributeValue);
-	}
+    private boolean isFeatureActive(String name) {
+        return featureManager.isActive(new NamedFeature(name));
+    }
 
 }
