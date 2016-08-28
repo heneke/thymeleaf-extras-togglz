@@ -18,6 +18,9 @@ Add an instance of com.github.heneke.thymeleaf.togglz.TogglzDialect to your Thym
 <div togglz:active="YOUR_FEATURE_NAME">
     content only visible if feature is active
 </div>
+<div togglz:inactive="YOUR_FEATURE_NAME">
+    content only visible if feature is <b>inactive</b>
+</div>
 ```
 
 to show/hide the markup container based on feature state.
@@ -35,6 +38,9 @@ Until recently, the expression processor for togglz:active did not support expre
 ````html
 <div togglz:active="'YOUR_FEATURE_NAME'">
     content only visible if feature is active
+</div>
+<div togglz:inactive="'YOUR_FEATURE_NAME'">
+    content only visible if feature is <b>inactive</b>
 </div>
 ```
 
