@@ -22,7 +22,7 @@ repositories {
 project.ext {
 	appName = "Thymeleaf Extras Togglz ${project.version}"
 	thymeleafVersion = "2.1.3.RELEASE"
-	togglzVersion = "2.0.1.Final"
+	togglzVersion = "[2.0.1.Final,3.0.0)"
 	ossrh = project.hasProperty('ossrhUsername') && project.hasProperty('ossrhPassword')
 	sign = project.hasProperty('signing.keyId') && project.hasProperty('signing.password') && project.hasProperty('signing.secretKeyRingFile')
 }
