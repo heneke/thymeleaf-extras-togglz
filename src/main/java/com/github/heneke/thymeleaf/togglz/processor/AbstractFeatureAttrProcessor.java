@@ -40,9 +40,9 @@ public abstract class AbstractFeatureAttrProcessor extends AbstractConditionalVi
 	/**
 	 * Determines the feature state.
 	 * 
-	 * @param arguments
-	 * @param element
-	 * @param attributeName
+	 * @param arguments the arguments
+	 * @param element the element
+	 * @param attributeName the attribute name
 	 * @param defaultState
 	 *            default state to return if the attribute value is <code>NULL</code> or empty
 	 * @return the feature state
