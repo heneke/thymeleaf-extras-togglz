@@ -27,22 +27,22 @@ import com.github.heneke.thymeleaf.togglz.TogglzDialect;
 
 /**
  * Processor for the <code>inactive</code> attribute in {@link TogglzDialect}. It shows or hides the given DOM container
- * based on feature state: <br/>
- * <br/>
+ * based on feature state: <br>
+ * <br>
  * 
  * <pre>
  * &lt;span togglz:inactive="FEATURE"&gt;
  *    Only visible when FEATURE is inactive.
- * &lt/span&gt;
+ * &lt;/span&gt;
  * </pre>
  * 
- * Features may also be specified dynamically by using expressions:<br/>
- * <br/>
+ * Features may also be specified dynamically by using expressions:<br>
+ * <br>
  * 
  * <pre>
  * &lt;span togglz:inactive="${feature}"&gt;
  *    Only visible when feature resolved by evaluating ${feature} is inactive.
- * &lt/span&gt;
+ * &lt;/span&gt;
  * </pre>
  * 
  * When using Thymeleaf 2.0.x, literal feature names have to be quoted with single quotes. Thymeleaf from 2.1 onward
