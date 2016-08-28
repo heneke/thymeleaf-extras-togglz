@@ -38,6 +38,7 @@ import org.thymeleaf.templatemode.TemplateMode;
  * @author Hendrik Heneke
  * @since 1.0.0
  * @see FeatureActiveAttrProcessor
+ * @see FeatureInactiveAttrProcessor
  */
 public class TogglzDialect extends AbstractProcessorDialect {
 
