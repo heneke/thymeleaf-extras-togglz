@@ -19,11 +19,13 @@
  */
 package com.github.heneke.thymeleaf.togglz.processor;
 
-import org.thymeleaf.Arguments;
-import org.thymeleaf.dom.Element;
-import org.thymeleaf.standard.processor.attr.StandardIfAttrProcessor;
+import org.thymeleaf.context.ITemplateContext;
+import org.thymeleaf.engine.AttributeName;
+import org.thymeleaf.model.IProcessableElementTag;
 
 import com.github.heneke.thymeleaf.togglz.TogglzDialect;
+import org.thymeleaf.standard.processor.StandardIfTagProcessor;
+import org.thymeleaf.templatemode.TemplateMode;
 
 /**
  * Processor for the <code>active</code> attribute in {@link TogglzDialect}. It shows or hides the given DOM container
@@ -54,20 +56,15 @@ import com.github.heneke.thymeleaf.togglz.TogglzDialect;
 public class FeatureActiveAttrProcessor extends AbstractFeatureAttrProcessor {
 
 	public static final String ATTR_NAME = "active";
-	public static final int ATTR_PRECEDENCE = StandardIfAttrProcessor.ATTR_PRECEDENCE;
+	public static final int ATTR_PRECEDENCE = StandardIfTagProcessor.PRECEDENCE;
 
-	public FeatureActiveAttrProcessor() {
-		super(ATTR_NAME);
+	public FeatureActiveAttrProcessor(final TemplateMode templateMode, final String dialectPrefix) {
+		super(templateMode, dialectPrefix, ATTR_NAME, ATTR_PRECEDENCE);
 	}
 
 	@Override
-	protected boolean isVisible(Arguments arguments, Element element, String attributeName) {
-		return determineFeatureState(arguments, element, attributeName, false);
-	}
-
-	@Override
-	public int getPrecedence() {
-		return ATTR_PRECEDENCE;
+	protected boolean isVisible(final ITemplateContext context, final IProcessableElementTag tag, final AttributeName attributeName, final String attributeValue) {
+		return determineFeatureState(context, tag, attributeName, attributeValue, false);
 	}
 
 }

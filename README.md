@@ -6,8 +6,10 @@ Thymeleaf dialect that integrates Togglz feature toggles (www.togglz.org) and th
 Requirements
 ------------
 
- *  Thymeleaf 2.1.x (works with older 2.0.x versions - see remark regarding expression evaulation)
- *  Togglz 2.0.x
+ *  Thymeleaf
+    * 2.1.x (works with older 2.0.x versions - see remark regarding expression evaulation) - using thymeleaf-extras-togglz **version 1.x**
+    * 3.x - using thymeleaf-extras-togglz **version 2.x** (not released yet)
+ *  Togglz 2.3.x (works with older 2.x versions)
  
 Usage
 -----

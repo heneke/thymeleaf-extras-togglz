@@ -19,19 +19,17 @@
  */
 package com.github.heneke.thymeleaf.togglz;
 
-import java.util.Collections;
 import java.util.LinkedHashSet;
-import java.util.Map;
 import java.util.Set;
 
 import org.thymeleaf.TemplateEngine;
-import org.thymeleaf.context.IProcessingContext;
-import org.thymeleaf.dialect.AbstractDialect;
-import org.thymeleaf.dialect.IExpressionEnhancingDialect;
+import org.thymeleaf.dialect.AbstractProcessorDialect;
 import org.thymeleaf.processor.IProcessor;
 
 import com.github.heneke.thymeleaf.togglz.processor.FeatureActiveAttrProcessor;
 import com.github.heneke.thymeleaf.togglz.processor.FeatureInactiveAttrProcessor;
+import org.thymeleaf.standard.StandardDialect;
+import org.thymeleaf.templatemode.TemplateMode;
 
 /**
  * Dialect for Thymeleaf that allows to show/hide DOM containers based on features state. In Order to use it, add an
@@ -40,36 +38,27 @@ import com.github.heneke.thymeleaf.togglz.processor.FeatureInactiveAttrProcessor
  * @author Hendrik Heneke
  * @since 1.0.0
  * @see FeatureActiveAttrProcessor
+ * @see FeatureInactiveAttrProcessor
  */
-public class TogglzDialect extends AbstractDialect implements IExpressionEnhancingDialect {
+public class TogglzDialect extends AbstractProcessorDialect {
 
 	public static final String DEFAULT_PREFIX = "togglz";
+	public static final String NAME = "Togglz Dialect";
 
 	public TogglzDialect() {
-		super();
+		this(NAME, DEFAULT_PREFIX, StandardDialect.PROCESSOR_PRECEDENCE);
+	}
+
+	public TogglzDialect(final String name, final String prefix, final int processorPrecedence) {
+		super(name, prefix, processorPrecedence);
 	}
 
 	@Override
-	public String getPrefix() {
-		return DEFAULT_PREFIX;
-	}
-
-	@Override
-	public boolean isLenient() {
-		return false;
-	}
-
-	@Override
-	public Set<IProcessor> getProcessors() {
+	public Set<IProcessor> getProcessors(final String dialectPrefix) {
 		final Set<IProcessor> processors = new LinkedHashSet<IProcessor>();
-		processors.add(new FeatureActiveAttrProcessor());
-		processors.add(new FeatureInactiveAttrProcessor());
+		processors.add(new FeatureActiveAttrProcessor(TemplateMode.HTML, dialectPrefix));
+		processors.add(new FeatureInactiveAttrProcessor(TemplateMode.HTML, dialectPrefix));
 		return processors;
-	}
-
-	@Override
-	public Map<String, Object> getAdditionalExpressionObjects(IProcessingContext processingContext) {
-		return Collections.emptyMap();
 	}
 
 }
