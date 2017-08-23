@@ -29,6 +29,7 @@ import org.thymeleaf.processor.IProcessor;
 import com.github.heneke.thymeleaf.togglz.processor.FeatureActiveAttrProcessor;
 import com.github.heneke.thymeleaf.togglz.processor.FeatureInactiveAttrProcessor;
 import org.thymeleaf.standard.StandardDialect;
+import org.thymeleaf.standard.processor.StandardXmlNsTagProcessor;
 import org.thymeleaf.templatemode.TemplateMode;
 
 /**
@@ -58,6 +59,7 @@ public class TogglzDialect extends AbstractProcessorDialect {
 		final Set<IProcessor> processors = new LinkedHashSet<IProcessor>();
 		processors.add(new FeatureActiveAttrProcessor(TemplateMode.HTML, dialectPrefix));
 		processors.add(new FeatureInactiveAttrProcessor(TemplateMode.HTML, dialectPrefix));
+		processors.add(new StandardXmlNsTagProcessor(TemplateMode.HTML, dialectPrefix));
 		return processors;
 	}
 
