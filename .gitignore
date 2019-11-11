@@ -6,3 +6,6 @@
 *.iml
 bin
 build
+/gradle
+/gradlew
+/gradlew.bat

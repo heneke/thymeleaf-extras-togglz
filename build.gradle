@@ -3,10 +3,11 @@ version = '2.0.1.RELEASE'
 
 apply plugin: 'java'
 apply plugin: 'maven'
+apply plugin: 'maven-publish'
 apply plugin: 'signing'
 
-sourceCompatibility = '1.7'
-targetCompatibility = '1.7'
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
 
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
@@ -14,25 +15,29 @@ afterEvaluate {
 	project.archivesBaseName = 'thymeleaf-extras-togglz'
 }
 
-repositories { 
+repositories {
 	mavenLocal()
 	mavenCentral()
 }
 
 project.ext {
 	appName = "Thymeleaf Extras Togglz ${project.version}"
-	thymeleafVersion = "3.0.1.RELEASE"
-	togglzVersion = "2.3.0.Final"
+	thymeleafVersion = "3.0.11.RELEASE"
+	togglzVersion = "2.6.1.Final"
 	ossrh = project.hasProperty('ossrhUsername') && project.hasProperty('ossrhPassword')
 	sign = project.hasProperty('signing.keyId') && project.hasProperty('signing.password') && project.hasProperty('signing.secretKeyRingFile')
 }
 
 dependencies {
-	compile "org.thymeleaf:thymeleaf:${thymeleafVersion}"
-	compile "org.togglz:togglz-core:${togglzVersion}"
-	testCompile "junit:junit:4.8.2"
-	testCompile "org.togglz:togglz-testing:${togglzVersion}"
-	testCompile "org.thymeleaf:thymeleaf-testing:${thymeleafVersion}"
+	implementation "org.thymeleaf:thymeleaf:${thymeleafVersion}"
+	implementation "org.togglz:togglz-core:${togglzVersion}"
+	implementation "org.thymeleaf:thymeleaf:${thymeleafVersion}"
+	implementation "org.thymeleaf:thymeleaf-spring4:${thymeleafVersion}"
+
+	testImplementation "junit:junit:4.12"
+
+	testImplementation "org.togglz:togglz-testing:${togglzVersion}"
+	testImplementation "org.thymeleaf:thymeleaf-testing:3.0.4.RELEASE"
 }
 
 def testBeforeRun = [install, assemble]
